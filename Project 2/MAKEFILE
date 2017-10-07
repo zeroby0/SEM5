@@ -1,0 +1,3 @@
+CC=octave
+
+WALK=Walk/p1.m Walk/p2.m
