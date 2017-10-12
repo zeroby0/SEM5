@@ -1,0 +1,60 @@
+# Part A. FIR filter
+
+## Introduction
+
+Digital filters play an important role in digital signal processing applications. They are widely used in digital signal processing applications, such as digital signal filtering, noise reduction, frequency analysis, multimedia compression, biomedical signal processing and image enhancement etc. A digital filter is a system which passes some desired signals more than others to reduce or enhance certain aspects of that signal. It can be used to pass the signals according to the specified frequency pass-band and reject the other frequency than the pass-band specification. The basic filter types can be divided into four categories:
+	1. Low-pass
+	2. High-pass
+	3. Band-pass
+	4. Band-stop
+
+On the basis of impulse response, there are two fundamental types of digital Filters:
+	1.Infinite Impulse Response (IIR) filters
+	2.Finite Impulse Response (FIR) filters
+FIR filters are preferred over IIR filters, because FIR digital filters have a linearphase, highly stable, non-recursive structure and arbitrary amplitude-frequency characteristic etc. {http://ijarcet.org/wp-content/uploads/IJARCET-VOL-4-ISSUE-5-2440-2443.pdf}
+
+In signal processing, a finite impulse response (FIR) filter is a filter whose impulse response (or response to any finite length input) is of finite duration, because it settles to zero in finite time. This is in contrast to infinite impulse response (IIR) filters, which may have internal feedback and may continue to respond indefinitely (usually decaying). {https://en.wikipedia.org/wiki/Finite_impulse_response}
+
+In this paper, we have added a high frequency noise to a voice signal, then designed a FIR low pass filter and simulated the filter in MATLAB.
+
+## Methods
+
+We have chosen a 2 second long voice signal as our input signal. In [Fig. 1a.] we can see how the amplitude of the sound varies with time, we can also see the frequency spectrum of the input signal [Fig. 1b.], we can observe that
+
+From the frequency spectrum we can see that most of the frequency information is below 2000 Hz. In [Fig. 2.] we can observe how much the reconstructed signal resembles when only the first few kilo hertz of its frequency spectrum is considered. We can observe that if only first 500 Hz frequency information is used in the reconstruction, we obtain back 70% of the original signal. So from this we have ascertained that if a high frequency noise is present and we pass that signal through a low pass filter, then we would eliminate the noise as well as only little amount of original signal as shwon in the plot.
+
+## Noise
+
+We wanted to add a high frequency, amplitude varying signal. We used the base as a high frequency sinusoid and multiplied it with another sinusoid of a little different sinusoid, hence a amplitude varying - high frequency noise signal is produced. [Fig. 3a.] shows the time variant noise signal. [Fig 3b] shows the frequency spectrum of the same noise signal. We can observe that the amplitude of the signal is varying, and since two sinusoids are multiplied we see two peaks in frequency spectrum on at the sum of both, other at their difference. We can observe that the noise mainly concentrated around 8 kHz.
+
+EQN{ noise = sin(time * 2 * pi * 8000).*cos(time * 2 * pi * 1); }
+
+## Noise added to the input sound
+
+When the noise is added to the input sound we obtain the signal shown in [Fig 4a] We can observe that the peak of the noise i.e. 8 kHz dominates the spectrum in the obtained signal.
+
+## FIR filter design
+
+Since we want a almost perfect filter we will use a hamming window low pass FIR filter. We know if we want a filter of length N, we can obtain the coeffecients from the formula,
+
+EQN{ coeff(n) = ((0.54 - (0.46 * cos(2*pi*n/(N-1)))) * (sin(wc*(n-M))./(pi*(n-M)))) }
+
+where wc is the cutoff frequency of the filter and M = (N-1)/2. Then we can convolve the noisy signal with the obtained filter coeffecients to get the filtered output.
+
+## FIR filter response
+
+We can see from [Fig 5] as the number of coeffecients (N) increases the frequency response of the filter becomes more and more ideal.
+
+## Filtered output
+
+For N = 181 and Fc = 5000 we can see that [Fig 6] The filter has removed the noise.
+
+Next we look at how the quality of the filtered signal increases as N increases. [Fig 7] shows how the correlation increases as N increases, but saturates at a value after certain value of N. We can also observe that it very slowly decreases after this peak.
+
+Next we look at how the quality of filtered signal increases as the value of cut off frequency increases [Fig 8]. We expect the correlation to decrease at 8kHz, since the noise that was supposed to be filtered out but it is allowed so the correlation decreases considerably.
+
+## Conclusion & Observations
+- FIR filters introduce a delay in the output signal, and it also aliased. Hence this should be removed when comparing with original signal.
+- As N increases the filter behaves more perfectly
+- Most of the information in voice sounds is concentrated in the first few hundred hertz
+- We have observed of varying N and Fc will affect the quality of the filtered signal.

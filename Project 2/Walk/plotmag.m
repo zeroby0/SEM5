@@ -34,52 +34,49 @@ Fs = 100;
 
 [time_accel, angle_accel_x, angle_accel_y, angle_accel_z, mag_accel] = getAngles(time_accel, signal_accel_x, signal_accel_y, signal_accel_z);
 
-plot(time_accel, mag_accel);
-xlabel("Time (ms)");
-ylabel("Magnitude");
-title("Magnitude Acceleration");
-
-print -dpng mag_accel_1.png;
-
-plot(time_accel, angle_accel_x);
-ylabel("Angle (rad)");
-xlabel("Time (ms)");
-title("Acceleration x angle");
-
-print -dpng angle_accel_x.png
-
-[freq_angle_accel_x, mag_fft_angle_accel_x] = getFFT(angle_accel_x, Fs);
-
-plot(freq_angle_accel_x, mag_fft_angle_accel_x);
-xlim([0, 10]);
-ylim([0, 800]);
-print -dpng fft_angle_accel_x.png
-
-
-
-plot(time_accel, angle_accel_x);
-ylabel("Angle (rad)");
-xlabel("Time (ms)");
-title("Acceleration x angle");
-
-print -dpng angle_accel_x.png
-
-[freq_angle_accel_x, mag_fft_angle_accel_x] = getFFT(angle_accel_x, Fs);
-
-plot(freq_angle_accel_x, mag_fft_angle_accel_x);
-xlim([0, 10]);
-ylim([0, 800]);
-print -dpng fft_angle_accel_x.png
-
-% plot(time_accel, angle_accel_y);
-% ylabel("Angle (rad)");
+% plot(time_accel, mag_accel);
 % xlabel("Time (ms)");
-% title("Acceleration y angle");
+% ylabel("Magnitude");
+% title("Magnitude Acceleration");
+
+% print -dpng mag_accel_1.png;
 
 % plot(time_accel, angle_accel_x);
 % ylabel("Angle (rad)");
 % xlabel("Time (ms)");
-% title("Acceleration z angle");
+% title("Acceleration x angle");
+
+% print -dpng angle_accel_x.png
+
+% [freq_angle_accel_x, mag_fft_angle_accel_x] = getFFT(angle_accel_x, Fs);
+
+% plot(freq_angle_accel_x, mag_fft_angle_accel_x);
+% xlim([0, 10]);
+% ylim([0, 800]);
+% print -dpng fft_angle_accel_x.png
+
+
+
+% plot(time_accel, angle_accel_x);
+% ylabel("Angle (rad)");
+% xlabel("Time (ms)");
+% title("Acceleration x angle");
+
+% print -dpng angle_accel_x.png
+
+% [freq_angle_accel_x, mag_fft_angle_accel_x] = getFFT(angle_accel_x, Fs);
+
+% plot(freq_angle_accel_x, mag_fft_angle_accel_x);
+% xlim([0, 10]);
+% ylim([0, 800]);
+% print -dpng fft_angle_accel_x.png
+
+
+% csv_orientation_z(csv_orientation_z > 80 & csv_orientation_z < 110)'
+% csv_orientation_y(csv_orientation_y > 80 & csv_orientation_y < 110)'
+% csv_orientation_x(csv_orientation_x > 80 & csv_orientation_x < 110)'
+
+
 
 
 
