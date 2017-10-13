@@ -1,0 +1,4 @@
+false
+MVI A, 00H
+DCR A
+HLT
